@@ -12,10 +12,6 @@ client.on('error', function (err) {
     console.log('Something went wrong ' + err);
 });
 
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
-});
-
 io.on('connection', function(socket){
   console.log('a user connected');
   client.lrange('chat history', 0, -1, function (err, msgs) {
@@ -37,6 +33,6 @@ function saveAndSend(msg) {
   });
 }
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+http.listen(3001, function(){
+  console.log('listening on *:3001');
 });
