@@ -7,9 +7,21 @@
   },
   "dependencies": {
     "express": "4.16.3",
-    "redis": "^2.8.0",
-    "socket.io": "^2.1.1",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1"
-  }
+    "react-dom": "^16.4.1",
+    "redis": "^2.8.0",
+    "socket.io": "^2.1.1"
+  },
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loto/nodejs-chat.git"
+  },
+  "author": "Neil Rosenstech, Lionel Oto, Cédric Darné",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/loto/nodejs-chat/issues"
+  },
+  "homepage": "https://github.com/loto/nodejs-chat#readme"
 }
