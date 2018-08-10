@@ -2,7 +2,7 @@ import React from 'react';
 
 const Message = (props) => {
   return (
-    <li>{props.text}</li>
+    <p className={props.index % 2 === 0 ? 'them' : 'me'}>{props.text}</p>
   );
 }
 

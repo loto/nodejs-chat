@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Form.css';
 
 class Form extends Component {
   state = { message: '' };
@@ -9,12 +10,16 @@ class Form extends Component {
     this.setState({ message: '' });
   };
 
+  onChange = (event) => {
+    this.setState({ message: event.target.value });
+  };
+
   render() {
     return (
-      <form onSubmit={this.sendMessage}>
-        <input type='text' value={this.state.message} onChange={event => this.setState({ message: event.target.value })} />
-        <button type='submit'>Send</button>
-      </form>
+      <form className='form'>
+        <input type='text' placeholder='Type something...' value={this.state.message} onChange={this.onChange} />
+        <button className='submit' onClick={this.sendMessage}><i className='fa fa-paper-plane'></i></button>
+  		</form>
     );
   }
 }

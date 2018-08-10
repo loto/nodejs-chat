@@ -1,0 +1,27 @@
+.form {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.form {
+  position: relative;
+}
+.form input {
+  float: left;
+  border: none;
+  width: calc(100% - 90px);
+  padding: 12px;
+  color: #32465a;
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  outline: none;
+}
+.form button {
+  float: right;
+  border: none;
+  width: 50px;
+  padding: 12px 0;
+  cursor: pointer;
+  color: #1289fe;
+  font-size: 20px;
+  line-height: 20px;
+}

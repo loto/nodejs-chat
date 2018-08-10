@@ -15,9 +15,9 @@ class Messages extends Component {
 
   render() {
     return (
-      <ul id='messages'>
-        {this.state.messages.map((message, index) => <Message text={message} key={index} />)}
-      </ul>
+      <div className='messages'>
+        {this.state.messages.map((message, index) => <Message text={message} index={index} key={index} />)}
+      </div>
     );
   }
 };
