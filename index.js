@@ -1,7 +1,8 @@
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const history = require('./history');
+const history = require('./history_memory');
+// const history = require('./history_redis');
 
 io.on('connection', function (socket) {
   console.log('a user connected');
