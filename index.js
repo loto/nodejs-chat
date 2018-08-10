@@ -3,22 +3,28 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const redis = require('redis');
 const client = redis.createClient();
+const { promisify } = require('util');
+const lrangeAsync = promisify(client.lrange).bind(client);
 
-client.on('connect', function() {
-    console.log('Redis client connected');
+client.on('connect', function () {
+  console.log('Redis client connected');
 });
 
 client.on('error', function (err) {
-    console.log('Something went wrong ' + err);
+  console.log('Something went wrong ' + err);
 });
 
-io.on('connection', function(socket){
+io.on('connection', function (socket) {
   console.log('a user connected');
-  client.lrange('chat history', 0, -1, function (err, msgs) {
-    socket.emit('chat history', msgs);
-  });
+  lrangeAsync('chat history', 0, -1)
+    .then(msgs => {
+      socket.emit('chat history', msgs);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 
-  socket.on('disconnect', function(){
+  socket.on('disconnect', function () {
     console.log('user disconnected');
   });
 
@@ -33,6 +39,6 @@ function saveAndSend(msg) {
   });
 }
 
-http.listen(3001, function(){
+http.listen(3001, function () {
   console.log('listening on *:3001');
 });
