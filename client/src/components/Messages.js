@@ -6,7 +6,7 @@ class Messages extends Component {
 
   componentDidMount() {
     this.props.socket.on('chat history', messages => this.setState({ messages: messages }));
-    this.props.socket.on('chat message', (message) => {
+    this.props.socket.on('chat message', message => {
       this.setState((prevState) => {
         return { messages: prevState.messages.concat(message) };
       });
@@ -15,7 +15,7 @@ class Messages extends Component {
 
   render() {
     return (
-      <ul id="messages">
+      <ul id='messages'>
         {this.state.messages.map((message, index) => <Message text={message} key={index} />)}
       </ul>
     );
