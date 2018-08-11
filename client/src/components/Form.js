@@ -6,8 +6,10 @@ class Form extends Component {
 
   sendMessage = (event) => {
     event.preventDefault();
-    this.props.socket.emit('chat message', this.state.message);
-    this.setState({ message: '' });
+    if (this.state.message.length > 0) {
+      this.props.socket.emit('chat message', this.state.message);
+      this.setState({ message: '' });
+    }
   };
 
   onChange = (event) => {

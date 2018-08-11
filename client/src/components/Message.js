@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Message = (props) => {
+const Message = ({ index, text }) => {
   return (
-    <p className={props.index % 2 === 0 ? 'them' : 'me'}>{props.text}</p>
+    <p className={index % 2 === 0 ? 'them' : 'me'}>{text}</p>
   );
 }
 
