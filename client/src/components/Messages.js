@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import Message from './Message';
+import Loader from './Loader';
 
 class Messages extends Component {
-  state = { messages: [] };
+  state = { messages: [], loading: true };
 
   componentDidMount() {
-    this.props.socket.on('chat history', messages => this.setState({ messages: messages }));
+    this.props.socket.on('chat history', messages => this.setState({ messages: messages }, () => {
+      setTimeout(() => this.setState({ loading: false }), 1000);
+    }));
     this.props.socket.on('chat message', message => {
       this.setState((prevState) => {
         return { messages: prevState.messages.concat(message) };
@@ -14,9 +17,12 @@ class Messages extends Component {
   }
 
   render() {
+    const { messages, loading } = this.state;
+
     return (
       <div className='messages'>
-        {this.state.messages.map((message, index) => <Message text={message} index={index} key={index} />)}
+        {loading && <Loader />}
+        {!loading && messages.map((message, index) => <Message text={message} index={index} key={index} />)}
       </div>
     );
   }
